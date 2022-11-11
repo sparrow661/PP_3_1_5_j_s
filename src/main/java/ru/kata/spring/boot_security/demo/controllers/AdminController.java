@@ -38,7 +38,7 @@ public class AdminController {
     public String addUser(@ModelAttribute("newUser") User user,
                           @RequestParam("roles") Set<Role> roles) {
         user.setRoleSet(roles);
-        userService.saveUser(user);
+        userService.updateUser(user);
         return "redirect:/admin";
     }
 
@@ -58,7 +58,7 @@ public class AdminController {
     @PatchMapping("/admin/updateUser")
     public String updateUser(User user, @RequestParam("roles") Set<Role> roles) {
         user.setRoleSet(roles);
-        userService.saveUser(user);
+        userService.updateUser(user);
         return "redirect:/admin";
     }
 }

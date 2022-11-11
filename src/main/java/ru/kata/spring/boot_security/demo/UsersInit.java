@@ -48,8 +48,8 @@ public class UsersInit {
         user3.setLastName("Granger");
         user3.setEmail("germi@mail.ru");
 
-        userService.saveUser(user1);
-        userService.saveUser(user2);
-        userService.saveUser(user3);
+        userService.updateUser(user1);
+        userService.updateUser(user2);
+        userService.updateUser(user3);
     }
 }

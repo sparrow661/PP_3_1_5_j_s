@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
 
     @Transactional
-    public void saveUser(User user) {
+    public void updateUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }

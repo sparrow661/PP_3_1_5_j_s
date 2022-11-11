@@ -1,6 +1,6 @@
 package ru.kata.spring.boot_security.demo.model;
 
-import lombok.Data;
+import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -18,27 +18,29 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
-@Data
+@Getter
+@Setter
+@ToString
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   // @Column(name = "id")
     private Long id;
 
-    @Column(name = "userName")
+   // @Column(name = "userName")
     private String username;
 
-    @Column(name = "firstname")
+  //  @Column(name = "firstname")
     private String firstName;
 
-    @Column(name = "lastname")
+ //   @Column(name = "lastname")
     private String lastName;
 
-    @Column(name = "email")
+ //   @Column(name = "email")
     private String email;
 
-    @Column(name = "password")
+   // @Column(name = "password")
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
@@ -65,10 +67,6 @@ public class User implements UserDetails {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public String getUsername() {
-        return email;
-    }
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -103,14 +101,4 @@ public class User implements UserDetails {
         return getClass().hashCode();
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", roleList=" + roleSet +
-                '}';
-    }
 }
