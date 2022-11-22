@@ -1,7 +1,5 @@
 package ru.kata.spring.boot_security.demo.model;
 
-
-import lombok.*;
 import org.hibernate.Hibernate;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -11,16 +9,13 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "roles")
-@Getter
-@Setter
-@ToString
 public class Role implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    @Column
     private Long id;
-
+    @Column
     private String name;
 
     public Role() { }
@@ -34,11 +29,6 @@ public class Role implements GrantedAuthority {
         return name;
     }
 
-    public String getShortRole() {
-
-        return this.name.replaceAll("ROLE_", "");
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -47,10 +37,32 @@ public class Role implements GrantedAuthority {
         return id != null && Objects.equals(id, role.id);
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public int hashCode() {
         return getClass().hashCode();
     }
 
-
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

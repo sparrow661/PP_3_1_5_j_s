@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
 
     @Transactional
-    public void updateUser(User user) {
+    public void saveUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
@@ -51,6 +51,15 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     public User findByUsername(String email) {
         return userRepository.findByUsername(email);
+    }
+
+    @Transactional
+    @Override
+    public void updateUser(User user) {
+        if (!user.getPassword().equals(userRepository.getById(user.getId()).getPassword())) {
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        }
+        userRepository.save(user);
     }
 
     public User findByEmail(String email) {

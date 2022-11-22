@@ -1,4 +1,5 @@
 package ru.kata.spring.boot_security.demo.configs;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -22,16 +23,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable().antMatcher("/**")
                 .authorizeRequests()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/admin-panel/**").hasRole("ADMIN")
-                .antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
-                .anyRequest().authenticated()
+                .antMatchers("/", "/login/**").permitAll()
+                .antMatchers("/viewUser").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/admin-panel").hasRole("ADMIN")
                 .and()
                 .formLogin().loginPage("/login").permitAll().successHandler(successUserHandler)
                 .and()
                 .logout()
-                .permitAll();
+                .permitAll()
+                .and()
+                .httpBasic();
     }
 
     @Bean

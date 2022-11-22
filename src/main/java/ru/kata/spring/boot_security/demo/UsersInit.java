@@ -26,9 +26,9 @@ public class UsersInit {
         roleService.save(user);
         roleService.save(admin);
 
-        User user1 = new User("harry", "111");//$2a$12$54rDWKSismZ9uGff8bWwvetMn/YqhjzHl0P3D7JxY8GSyXeI2zM9e
-        User user2 = new User("ron","111");//111//$2a$12$54rDWKSismZ9uGff8bWwvetMn/YqhjzHl0P3D7JxY8GSyXeI2zM9e
-        User user3 = new User("hermi", "111");//$2a$12$54rDWKSismZ9uGff8bWwvetMn/YqhjzHl0P3D7JxY8GSyXeI2zM9e
+        User user1 = new User("harry@mail.ru", "111");//$2a$12$54rDWKSismZ9uGff8bWwvetMn/YqhjzHl0P3D7JxY8GSyXeI2zM9e
+        User user2 = new User("ron@mail.ru","111");//111//$2a$12$54rDWKSismZ9uGff8bWwvetMn/YqhjzHl0P3D7JxY8GSyXeI2zM9e
+        User user3 = new User("hermi@mail.ru", "111");//$2a$12$54rDWKSismZ9uGff8bWwvetMn/YqhjzHl0P3D7JxY8GSyXeI2zM9e
 
         user1.setRole(roleService.findByName("ROLE_ADMIN"));
         user1.setRole(roleService.findByName("ROLE_USER"));
@@ -47,9 +47,9 @@ public class UsersInit {
         user3.setLastName("Granger");
         user3.setAge(11);
 
-        userService.updateUser(user1);
-        userService.updateUser(user2);
-        userService.updateUser(user3);
+        userService.saveUser(user1);
+        userService.saveUser(user2);
+        userService.saveUser(user3);
 
     }
 
