@@ -26,16 +26,12 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
     private Long id;
 
-    @Column(name = "firstname")
     private String firstName;
 
-    @Column(name = "lastname")
     private String lastName;
 
-    @Column(name = "age")
     private int age;
 
     @Column(name = "email", unique = true, nullable = false)
@@ -44,7 +40,7 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -108,14 +104,4 @@ public class User implements UserDetails {
         return getClass().hashCode();
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + username + '\'' +
-                ", roleList=" + roles +
-                '}';
-    }
 }
